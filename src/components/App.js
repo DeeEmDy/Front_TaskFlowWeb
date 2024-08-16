@@ -1,15 +1,17 @@
-import './App.css'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import logo from '../logo.svg'
 
-import Header from './Header'
-import AppContent from './AppContent';
+function App() {
+    const navigate = useNavigate();
 
-function App () {
+    const goToCalendar = () => {
+        navigate('/calendar');
+    };
+
     return (
         <div>
-            <Header pageTitle="Frontend authenticated with JWT" logoSrc={logo} />
-            <AppContent />
+            <button onClick={goToCalendar}>Go to Calendar</button>
         </div>
     );
 }
