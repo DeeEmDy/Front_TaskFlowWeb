@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { Calendar, dayjsLocalizer } from 'react-big-calendar';
+import { Calendar, dayjsLocalizer, Views } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import dayjs from 'dayjs';
 import Modal from 'react-modal';
-import'./Calendar.css';
+import './Calendar.css';
+import { showAlert } from './Alert.js';
 
-Modal.setAppElement('#root'); // Ensure the modal is attached to the correct element
+Modal.setAppElement('#root');
 
-function App() { // Function component naming convention
+function App() {
   const localizer = dayjsLocalizer(dayjs);
-
   const [events, setEvents] = useState([
     {
       start: dayjs('2024-08-08 12:00 AM', 'YYYY-MM-DD hh:mm A').toDate(),
@@ -28,12 +28,13 @@ function App() { // Function component naming convention
   });
 
   const handleSlotClick = (slotInfo) => {
+    if (slotInfo.view === Views.MONTH) return; // Evita abrir el modal en la vista de mes
     setSelectedSlot(slotInfo);
     setModalIsOpen(true);
     setNewEvent({
       ...newEvent,
       start: slotInfo.start,
-      end: slotInfo.start // Adjust default duration here if needed
+      end: slotInfo.start
     });
   };
 
@@ -49,23 +50,24 @@ function App() { // Function component naming convention
     e.preventDefault();
     setEvents([...events, newEvent]);
     setModalIsOpen(false);
+    showAlert('Evento agregado con éxito!');
   };
 
   return (
-    <div style={{ height: "95vh", width: "70vw" }}>
+    <div className="calendar-container">
       <Calendar
         localizer={localizer}
         events={events}
         selectable
         onSelectSlot={handleSlotClick}
-        onSelectEvent={event => alert(event.title)}
-        style={{ height: 500 }}
+        onSelectEvent={event => showAlert(event.title)}
+        style={{ height: 'calc(100vh - 20px)', width: '80vw', margin: '10px auto', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}
       />
 
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} contentLabel="Agregar Nuevo Evento">
-        <h2>Agregar Nuevo Evento</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
+      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className="event-modal">
+        <h2 className="modal-title">Agregar Nuevo Evento</h2>
+        <form onSubmit={handleSubmit} className="event-form">
+          <div className="form-group">
             <label>Título:</label>
             <input
               type="text"
@@ -73,9 +75,10 @@ function App() { // Function component naming convention
               value={newEvent.title}
               onChange={handleInputChange}
               required
+              className="form-input"
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Inicio:</label>
             <input
               type="datetime-local"
@@ -83,9 +86,10 @@ function App() { // Function component naming convention
               value={dayjs(newEvent.start).format('YYYY-MM-DDTHH:mm')}
               onChange={handleInputChange}
               required
+              className="form-input"
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Fin:</label>
             <input
               type="datetime-local"
@@ -93,18 +97,22 @@ function App() { // Function component naming convention
               value={dayjs(newEvent.end).format('YYYY-MM-DDTHH:mm')}
               onChange={handleInputChange}
               required
+              className="form-input"
             />
           </div>
-          <div>
+          <div className="form-group">
             <label>Descripción:</label>
             <textarea
               name="description"
               value={newEvent.description}
               onChange={handleInputChange}
+              className="form-input"
             />
           </div>
-          <button type="submit">Agregar Evento</button>
-          <button onClick={() => setModalIsOpen(false)}>Cancelar</button>
+          <div className="form-buttons">
+            <button type="submit" className="submit-button">Agregar Evento</button>
+            <button type="button" onClick={() => setModalIsOpen(false)} className="cancel-button">Cancelar</button>
+          </div>
         </form>
       </Modal>
     </div>

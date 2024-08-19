@@ -1,0 +1,84 @@
+.calendar-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  }
+  
+  .event-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+    opacity: 1; 
+  }
+  
+  .modal-title {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+  }
+  
+  textarea.form-input {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .cancel-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
