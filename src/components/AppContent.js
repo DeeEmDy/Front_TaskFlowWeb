@@ -1,4 +1,5 @@
-import React, * as react from 'react'; 
+//import React, * as react from 'react'; 
+import React from 'react'; 
 import WelcomeContent from './WelcomeContent';
 
 export default class AppContent extends React.Component {
