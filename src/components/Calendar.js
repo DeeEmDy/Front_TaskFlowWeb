@@ -24,11 +24,7 @@ function App() {
     title: '',
     start: '',
     end: '',
-    description: '',
-    userId: '',
-    taskProgress: '',
-    taskCompletionDate: '',
-    score: ''
+    description: ''
   });
 
   const handleSlotClick = (slotInfo) => {
@@ -110,54 +106,6 @@ function App() {
               name="description"
               value={newEvent.description}
               onChange={handleInputChange}
-              className="form-input"
-            />
-          </div>
-          <div className="form-group">
-            <label>ID Usuario:</label>
-            <input
-              type="text"
-              name="userId"
-              value={newEvent.userId}
-              onChange={handleInputChange}
-              required
-              className="form-input"
-            />
-          </div>
-          <div className="form-group">
-            <label>Progreso de Tarea (%):</label>
-            <input
-              type="number"
-              name="taskProgress"
-              value={newEvent.taskProgress}
-              onChange={handleInputChange}
-              min="0"
-              max="100"
-              required
-              className="form-input"
-            />
-          </div>
-          <div className="form-group">
-            <label>Fecha Finalización de Tarea:</label>
-            <input
-              type="date"
-              name="taskCompletionDate"
-              value={newEvent.taskCompletionDate}
-              onChange={handleInputChange}
-              required
-              className="form-input"
-            />
-          </div>
-          <div className="form-group">
-            <label>Puntaje:</label>
-            <input
-              type="number"
-              name="score"
-              value={newEvent.score}
-              onChange={handleInputChange}
-              min="0"
-              max="100"
-              required
               className="form-input"
             />
           </div>
