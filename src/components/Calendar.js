@@ -31,8 +31,16 @@ function App() {
     score: ''
   });
 
+
+    // Lista de usuarios quemados por ahora
+    const users = [
+      { id: '1', name: 'Usuario 1' },
+      { id: '2', name: 'Usuario 2' },
+      { id: '3', name: 'Usuario 3' },
+    ];
+
   const handleSlotClick = (slotInfo) => {
-    if (slotInfo.view === Views.MONTH) return; // Evita abrir el modal en la vista de mes
+    if (slotInfo.view === Views.MONTH) return; 
     setSelectedSlot(slotInfo);
     setModalIsOpen(true);
     setNewEvent({
@@ -65,7 +73,7 @@ function App() {
         selectable
         onSelectSlot={handleSlotClick}
         onSelectEvent={event => showAlert(event.title)}
-        style={{ height: 'calc(100vh - 20px)', width: '80vw', margin: '10px auto', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}
+        style={{ height: '81vh', width: '100%', margin: '0 auto', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}
       />
 
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)} className="event-modal">
@@ -113,30 +121,41 @@ function App() {
               className="form-input"
             />
           </div>
+
           <div className="form-group">
-            <label>ID Usuario:</label>
-            <input
-              type="text"
+            <label>Usuario:</label>
+            <select
               name="id_user"
               value={newEvent.id_user}
               onChange={handleInputChange}
               required
               className="form-input"
-            />
+            >
+              <option value="">Seleccione un usuario</option>
+              {users.map(user => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
           </div>
+  
           <div className="form-group">
-            <label>Progreso de Tarea (%):</label>
-            <input
-              type="number"
-              name="progress_task"
-              value={newEvent.progress_task}
-              onChange={handleInputChange}
-              min="0"
-              max="100"
-              required
-              className="form-input"
-            />
-          </div>
+          <label>Progreso de Tarea (%):</label>
+          <input
+            type="range"
+            name="progress_task"
+            value={newEvent.progress_task || 0} 
+            onChange={handleInputChange}
+            min="0"
+            max="100"
+            required
+            className="form-input"
+            disabled 
+          />
+          <div>{newEvent.progress_task || 0}%</div> 
+        </div>
+        
           <div className="form-group">
             <label>Fecha Finalización de Tarea:</label>
             <input
@@ -157,7 +176,7 @@ function App() {
               onChange={handleInputChange}
               min="0"
               max="100"
-              required
+              disabled 
               className="form-input"
             />
           </div>
