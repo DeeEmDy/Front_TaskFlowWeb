@@ -21,3 +21,11 @@ npm install nodemon --save-dev
 
 #Instalar concurrently para poder correr scripts simultáneamente en el proyecto.
 npm install concurrently --save-dev
+
+
+El ultimo error. 20/08/2024 20:15
+ERROR in ./node_modules/react-icons/fa/index.mjs 2:0-43
+Module not found: Error: Can't resolve '../lib/index.mjs' in 
+npm uninstall react-icons
+npm install react-icons
+npm install
