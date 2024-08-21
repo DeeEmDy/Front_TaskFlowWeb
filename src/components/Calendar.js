@@ -21,13 +21,13 @@ function App() {
   const [, setSelectedSlot] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newEvent, setNewEvent] = useState({
-    id_user: '',
     title: '',
-    description_task: '',
-    created_task_date: '',
-    expiration_task_date: '',
-    progress_task: '',
-    finalization_task_date: '',
+    start: '',
+    end: '',
+    description: '',
+    userId: '',
+    taskProgress: '',
+    taskCompletionDate: '',
     score: ''
   });
 
@@ -37,8 +37,8 @@ function App() {
     setModalIsOpen(true);
     setNewEvent({
       ...newEvent,
-      created_task_date: slotInfo.start,
-      expiration_task_date: slotInfo.start
+      start: slotInfo.start,
+      end: slotInfo.start
     });
   };
 
@@ -83,22 +83,22 @@ function App() {
             />
           </div>
           <div className="form-group">
-            <label>Fecha Tarea Creada:</label>
+            <label>Inicio:</label>
             <input
               type="datetime-local"
-              name="created_task_date"
-              value={dayjs(newEvent.created_task_date).format('YYYY-MM-DDTHH:mm')}
+              name="start"
+              value={dayjs(newEvent.start).format('YYYY-MM-DDTHH:mm')}
               onChange={handleInputChange}
               required
               className="form-input"
             />
           </div>
           <div className="form-group">
-            <label>Fecha de Tarea Expirada:</label>
+            <label>Fin:</label>
             <input
               type="datetime-local"
-              name="expiration_task_date"
-              value={dayjs(newEvent.expiration_task_date).format('YYYY-MM-DDTHH:mm')}
+              name="end"
+              value={dayjs(newEvent.end).format('YYYY-MM-DDTHH:mm')}
               onChange={handleInputChange}
               required
               className="form-input"
@@ -107,8 +107,8 @@ function App() {
           <div className="form-group">
             <label>Descripción:</label>
             <textarea
-              name="description_task"
-              value={newEvent.description_task}
+              name="description"
+              value={newEvent.description}
               onChange={handleInputChange}
               className="form-input"
             />
@@ -117,8 +117,8 @@ function App() {
             <label>ID Usuario:</label>
             <input
               type="text"
-              name="id_user"
-              value={newEvent.id_user}
+              name="userId"
+              value={newEvent.userId}
               onChange={handleInputChange}
               required
               className="form-input"
@@ -128,8 +128,8 @@ function App() {
             <label>Progreso de Tarea (%):</label>
             <input
               type="number"
-              name="progress_task"
-              value={newEvent.progress_task}
+              name="taskProgress"
+              value={newEvent.taskProgress}
               onChange={handleInputChange}
               min="0"
               max="100"
@@ -141,8 +141,8 @@ function App() {
             <label>Fecha Finalización de Tarea:</label>
             <input
               type="date"
-              name="finalization_task_date"
-              value={newEvent.finalization_task_date}
+              name="taskCompletionDate"
+              value={newEvent.taskCompletionDate}
               onChange={handleInputChange}
               required
               className="form-input"
