@@ -94,7 +94,7 @@
 .password-icon {
     position: absolute;
     top: 50%;
-    right: 0rem; /* Adjust as needed */
+    right: 2%; /* Adjust as needed */
     transform: translateY(-50%); /* Center vertically */
     z-index: 1; /* Make sure it is above the input field */
 }
