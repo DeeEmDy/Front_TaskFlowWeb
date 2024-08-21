@@ -4,6 +4,9 @@
 
 #Detener/Apagar la aplicación de React/Servidor: CTRL+C
 
+#Instalar Axios para el manejo de solicitudes HTTP.
+npm install axios
+
 #Instalar react router dom
 npm install react-router-dom
 
