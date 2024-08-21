@@ -1,0 +1,11 @@
+.container {
+    width: 100%; /* O el tamaño que necesites */
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+  }
+  
